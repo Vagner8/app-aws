@@ -1,0 +1,19 @@
+services:
+  # backend:
+  #   build: backend
+  #   restart: always
+  #   networks:
+  #     - private
+  #   ports:
+  #     - 5000:5000
+  #   command: npm start
+  frontend:
+    build: frontend
+    restart: always
+    networks:
+      - private
+    ports:
+      - 3000:80
+networks:
+  public:
+  private:
