@@ -1,0 +1,11 @@
+<h3>User list</h3>
+
+<form [formGroup]="userForm">
+  <input type="text" formControlName="name">
+  <input type="text" formArrayName="email">
+  <button (click)="saveUser()">Save</button>
+</form>
+
+<div *ngFor="let user of users">
+
+</div>

@@ -3,4 +3,4 @@ import { testController } from "../controllers";
 
 export const route = Router();
 
-route.get("/", testController.get);
+route.post("/", testController.get);
