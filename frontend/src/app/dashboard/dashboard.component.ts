@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
 import { User, UsersService } from '../services/users.service';
 
 @Component({
@@ -7,18 +7,27 @@ import { User, UsersService } from '../services/users.service';
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css'],
 })
-export class DashboardComponent {
-  users?: User[];
+export class DashboardComponent implements OnInit {
   constructor(private usersService: UsersService) {}
+  users$?: Observable<User[]>;
 
-  userForm = new FormGroup({
-    name: new FormControl('', { nonNullable: true }),
-    email: new FormControl('', { nonNullable: true }),
-  });
+  ngOnInit(): void {
+    this.getUsers();
+  }
 
-  saveUser() {
-    this.usersService.save(this.userForm.value).subscribe(data => {
-      console.log(data)
+  getUsers() {
+    this.users$ = this.usersService.getUsers();
+  }
+
+  createUser(user: Partial<User>) {
+    this.usersService.createUser(user).subscribe(() => {
+      this.getUsers();
+    });
+  }
+
+  deleteUser(userId: number) {
+    this.usersService.deleteUser(userId).subscribe(() => {
+      this.getUsers();
     });
   }
 }

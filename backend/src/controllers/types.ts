@@ -8,4 +8,6 @@ type ControllerFunctionType = (
 
 export interface ControllerType {
   get: ControllerFunctionType;
+  post: ControllerFunctionType;
+  delete: ControllerFunctionType;
 }
