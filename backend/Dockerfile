@@ -1,6 +1,6 @@
-FROM node:latest as node
+FROM node:alpine
 WORKDIR /beckend
-COPY package*.json ./
-COPY . .
+COPY package.json .
 RUN npm install
+COPY . .
 CMD [ "npm", "start" ]
