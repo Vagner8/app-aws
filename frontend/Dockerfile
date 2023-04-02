@@ -1,7 +1,8 @@
-FROM node:latest as node
+FROM node:alpine
 WORKDIR /frontend
-COPY . .
+COPY package.json .
 RUN npm install
+COPY . .
 RUN npm run build --prod
 
 FROM nginx:alpine
