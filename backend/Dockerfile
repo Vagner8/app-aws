@@ -1,4 +1,4 @@
-FROM node:alpine
+FROM nginx:alpine
 WORKDIR /beckend
 COPY package.json .
 RUN npm install
