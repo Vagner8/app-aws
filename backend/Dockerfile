@@ -1,9 +1,6 @@
-FROM node:lts-alpine
-ENV NODE_ENV=production
-RUN mkdir -p /beckend
+FROM node:latest as node
 WORKDIR /beckend
-COPY ["package.json", "package-lock.json*", "./"]
-RUN npm install --production --silent && mv node_modules ../
+COPY package*.json ./
 COPY . .
-USER node
-CMD ["npm", "start"]
+RUN npm install
+CMD [ "npm", "start" ]

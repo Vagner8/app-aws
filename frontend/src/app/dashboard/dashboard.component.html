@@ -1,6 +1,6 @@
 <h3>Dashboard</h3>
 <app-user-form (createUserEvent)="createUser($event)"></app-user-form>
-<div *ngFor="let user of users$ | async">
+<div *ngFor="let user of users$ | async; trackBy: trackByFn">
   <h3>{{ user.name }}</h3>
   <h3>{{ user.email }}</h3>
   <button (click)="deleteUser(user.userId)">Delete</button>

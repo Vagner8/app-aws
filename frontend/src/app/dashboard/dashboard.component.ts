@@ -30,4 +30,8 @@ export class DashboardComponent implements OnInit {
       this.getUsers();
     });
   }
+
+  trackByFn(index: number, item: User) {
+    return index;
+  }
 }
